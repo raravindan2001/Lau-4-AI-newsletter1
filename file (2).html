@@ -1,0 +1,371 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Insights Hub - Premium AI News & Analysis</title>
+    <meta name="description" content="Get exclusive AI insights, real-time news, and professional analysis. Free 5-day trial, then ₹1000/month.">
+    
+    <!-- CSS -->
+    <link rel="stylesheet" href="assets/css/style.css">
+    <link rel="stylesheet" href="assets/css/dark-theme.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- QR Code Library -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcode/1.5.3/qrcode.min.js"></script>
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <nav class="navbar">
+            <div class="container">
+                <div class="nav-brand">
+                    <i class="fas fa-brain"></i>
+                    <span>AI Insights Hub</span>
+                </div>
+                
+                <ul class="nav-menu">
+                    <li><a href="#home" class="nav-link">Home</a></li>
+                    <li><a href="#news" class="nav-link">Latest News</a></li>
+                    <li><a href="#trends" class="nav-link">Trends</a></li>
+                    <li><a href="/pricing" class="nav-link">Pricing</a></li>
+                    <li class="theme-toggle" onclick="toggleTheme()">
+                        <i class="fas fa-sun" id="theme-icon"></i>
+                    </li>
+                </ul>
+                
+                <div class="auth-buttons" id="auth-buttons">
+                    <button class="btn-outline" onclick="window.location.href='/login'">
+                        <i class="fas fa-sign-in-alt"></i>
+                        Login
+                    </button>
+                    <button class="btn-primary" onclick="window.location.href='/signup'">
+                        <i class="fas fa-user-plus"></i>
+                        Sign Up
+                    </button>
+                </div>
+                
+                <div class="user-menu" id="user-menu" style="display: none;">
+                    <div class="user-avatar" onclick="toggleUserDropdown()">
+                        <i class="fas fa-user-circle"></i>
+                        <span id="user-name">User</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    
+                    <div class="dropdown" id="user-dropdown">
+                        <a href="/dashboard"><i class="fas fa-dashboard"></i> Dashboard</a>
+                        <a href="pages/subscription-status.html"><i class="fas fa-credit-card"></i> Subscription</a>
+                        <a href="#" onclick="logout()"><i class="fas fa-sign-out-alt"></i> Logout</a>
+                    </div>
+                </div>
+                
+                <div class="nav-toggle" onclick="toggleMobileNav()">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Subscription Alert Banner -->
+    <div class="subscription-banner" id="subscription-banner" style="display: none;">
+        <div class="container">
+            <div class="banner-content">
+                <div class="trial-info">
+                    <i class="fas fa-clock"></i>
+                    <span id="trial-status">Free trial: 3 days remaining</span>
+                </div>
+                <button class="btn-accent" onclick="openPricingModal()">
+                    Upgrade Now - ₹1000/month
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <div class="container">
+            <div class="hero-content">
+                <h1>🚀 Stay Ahead in the AI Revolution</h1>
+                <p>Get curated AI news, trend analysis, and actionable insights delivered in real-time. 
+                   <strong>Start your 5-day free trial now!</strong></p>
+                
+                <div class="pricing-highlight">
+                    <div class="price-card">
+                        <span class="price-label">Free Trial</span>
+                        <span class="price-value">5 Days</span>
+                        <span class="price-note">Then ₹1000/month</span>
+                    </div>
+                </div>
+                
+                <div class="hero-stats">
+                    <div class="stat">
+                        <span class="stat-number">50+</span>
+                        <span class="stat-label">AI Sources</span>
+                    </div>
+                    <div class="stat">
+                        <span class="stat-number">24/7</span>
+                        <span class="stat-label">Real-time Updates</span>
+                    </div>
+                    <div class="stat">
+                        <span class="stat-number">15k+</span>
+                        <span class="stat-label">Active Users</span>
+                    </div>
+                </div>
+                
+                <div class="hero-cta">
+                    <button class="btn-primary btn-large" onclick="window.location.href='/signup'">
+                        <i class="fas fa-rocket"></i>
+                        Start Free Trial
+                    </button>
+                    <button class="btn-secondary" onclick="window.location.href='/pricing'">
+                        <i class="fas fa-tag"></i>
+                        View Pricing
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Pricing Section -->
+    <section id="pricing" class="pricing-section">
+        <div class="container">
+            <div class="section-header">
+                <h2>💎 Flexible Subscription Plans</h2>
+                <p>Choose the plan that works for your schedule and budget</p>
+            </div>
+            
+            <div class="pricing-grid">
+                <!-- Hourly Plan -->
+                <div class="pricing-card">
+                    <div class="plan-header">
+                        <h3>⚡ Hourly Access</h3>
+                        <div class="price">
+                            <span class="currency">₹</span>
+                            <span class="amount">50</span>
+                            <span class="period">/hour</span>
+                        </div>
+                    </div>
+                    <ul class="plan-features">
+                        <li><i class="fas fa-check"></i> Real-time AI news</li>
+                        <li><i class="fas fa-check"></i> Basic trend analysis</li>
+                        <li><i class="fas fa-check"></i> 1-hour full access</li>
+                        <li><i class="fas fa-times"></i> No archive access</li>
+                    </ul>
+                    <button class="btn-outline" onclick="selectPlan('hourly', 50)">
+                        Choose Hourly
+                    </button>
+                </div>
+
+                <!-- Daily Plan -->
+                <div class="pricing-card">
+                    <div class="plan-header">
+                        <h3>📅 Daily Pass</h3>
+                        <div class="price">
+                            <span class="currency">₹</span>
+                            <span class="amount">200</span>
+                            <span class="period">/day</span>
+                        </div>
+                    </div>
+                    <ul class="plan-features">
+                        <li><i class="fas fa-check"></i> 24-hour full access</li>
+                        <li><i class="fas fa-check"></i> Advanced analytics</li>
+                        <li><i class="fas fa-check"></i> Newsletter access</li>
+                        <li><i class="fas fa-check"></i> Basic archive</li>
+                    </ul>
+                    <button class="btn-outline" onclick="selectPlan('daily', 200)">
+                        Choose Daily
+                    </button>
+                </div>
+
+                <!-- Weekly Plan -->
+                <div class="pricing-card popular">
+                    <div class="popular-badge">Most Popular</div>
+                    <div class="plan-header">
+                        <h3>🔥 Weekly Pro</h3>
+                        <div class="price">
+                            <span class="currency">₹</span>
+                            <span class="amount">750</span>
+                            <span class="period">/week</span>
+                        </div>
+                    </div>
+                    <ul class="plan-features">
+                        <li><i class="fas fa-check"></i> 7 days unlimited access</li>
+                        <li><i class="fas fa-check"></i> Premium insights</li>
+                        <li><i class="fas fa-check"></i> Weekly reports</li>
+                        <li><i class="fas fa-check"></i> Full archive access</li>
+                        <li><i class="fas fa-check"></i> Priority support</li>
+                    </ul>
+                    <button class="btn-primary" onclick="selectPlan('weekly', 750)">
+                        Choose Weekly
+                    </button>
+                </div>
+
+                <!-- Monthly Plan -->
+                <div class="pricing-card premium">
+                    <div class="premium-badge">Best Value</div>
+                    <div class="plan-header">
+                        <h3>👑 Monthly Premium</h3>
+                        <div class="price">
+                            <span class="currency">₹</span>
+                            <span class="amount">1000</span>
+                            <span class="period">/month</span>
+                        </div>
+                        <div class="savings">Save 67% vs hourly!</div>
+                    </div>
+                    <ul class="plan-features">
+                        <li><i class="fas fa-check"></i> Unlimited access</li>
+                        <li><i class="fas fa-check"></i> Exclusive content</li>
+                        <li><i class="fas fa-check"></i> API access</li>
+                        <li><i class="fas fa-check"></i> Complete archive</li>
+                        <li><i class="fas fa-check"></i> VIP support</li>
+                        <li><i class="fas fa-check"></i> Webinar access</li>
+                    </ul>
+                    <button class="btn-accent" onclick="selectPlan('monthly', 1000)">
+                        Choose Monthly
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Live News Feed -->
+    <section id="news" class="news-section">
+        <div class="container">
+            <div class="section-header">
+                <h2>🔴 Live AI News Feed</h2>
+                <p>Real-time updates from 50+ trusted sources</p>
+            </div>
+            
+            <div class="content-gate" id="content-gate">
+                <div class="gate-message">
+                    <i class="fas fa-lock"></i>
+                    <h3>Premium Content</h3>
+                    <p>Sign up for a free 5-day trial to access real-time AI news and insights</p>
+                    <button class="btn-primary" onclick="window.location.href='/signup'">
+                        Start Free Trial
+                    </button>
+                </div>
+            </div>
+            
+            <div class="news-grid" id="news-grid" style="display: none;">
+                <!-- News items will be populated by JavaScript -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Payment Modal -->
+    <div id="payment-modal" class="modal">
+        <div class="modal-content payment-modal">
+            <span class="close" onclick="closePaymentModal()">&times;</span>
+            
+            <div class="payment-header">
+                <h2><i class="fas fa-credit-card"></i> Complete Your Subscription</h2>
+                <div class="selected-plan" id="selected-plan-info"></div>
+            </div>
+            
+            <div class="payment-methods">
+                <div class="payment-method active" data-method="upi">
+                    <i class="fas fa-mobile-alt"></i>
+                    <span>UPI Payment</span>
+                    <i class="fas fa-check"></i>
+                </div>
+            </div>
+            
+            <div class="upi-payment" id="upi-payment">
+                <div class="qr-section">
+                    <h3>Scan QR Code to Pay</h3>
+                    <div class="qr-container">
+                        <canvas id="qr-code"></canvas>
+                    </div>
+                    <p class="upi-id">UPI ID: aiinsights@paytm</p>
+                </div>
+                
+                <div class="upload-section">
+                    <h4>Upload Payment Screenshot</h4>
+                    <div class="upload-area" onclick="document.getElementById('payment-screenshot').click()">
+                        <i class="fas fa-cloud-upload-alt"></i>
+                        <p>Click to upload payment screenshot</p>
+                        <input type="file" id="payment-screenshot" accept="image/*" onchange="handlePaymentUpload(event)" style="display: none;">
+                    </div>
+                </div>
+                
+                <button class="btn-primary full-width" onclick="processPayment()" id="process-payment" disabled>
+                    <i class="fas fa-check-circle"></i>
+                    Verify Payment & Activate
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Newsletter Section -->
+    <section class="newsletter-section">
+        <div class="container">
+            <div class="newsletter-content">
+                <h2>📧 AI Weekly Newsletter</h2>
+                <p>Get the best AI insights delivered to your inbox every week</p>
+                <form class="newsletter-form" onsubmit="handleNewsletterSignup(event)">
+                    <input type="email" placeholder="Enter your email" required>
+                    <button type="submit" class="btn-accent">Subscribe</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <div class="footer-brand">
+                        <i class="fas fa-brain"></i>
+                        <span>AI Insights Hub</span>
+                    </div>
+                    <p>Empowering professionals with actionable AI intelligence.</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-linkedin"></i></a>
+                        <a href="#"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+                
+                <div class="footer-section">
+                    <h4>Platform</h4>
+                    <ul>
+                        <li><a href="#news">Live News Feed</a></li>
+                        <li><a href="#trends">AI Trends</a></li>
+                        <li><a href="/pricing">Pricing Plans</a></li>
+                        <li><a href="#newsletter">Newsletter</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-section">
+                    <h4>Support</h4>
+                    <ul>
+                        <li><a href="#">Help Center</a></li>
+                        <li><a href="#">Contact Support</a></li>
+                        <li><a href="#">Privacy Policy</a></li>
+                        <li><a href="#">Terms of Service</a></li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p>&copy; 2024 AI Insights Hub. All rights reserved.</p>
+                <div class="payment-security">
+                    <span>Secure UPI Payments</span>
+                    <i class="fas fa-shield-alt"></i>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="assets/js/main.js"></script>
+    <script src="assets/js/auth.js"></script>
+    <script src="assets/js/subscription.js"></script>
+    <script src="assets/js/payment.js"></script>
+</body>
+</html>
